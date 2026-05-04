@@ -43,7 +43,7 @@ app.use('/api/', limiter);
 
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://speedhub-neon.vercel.app',
+  'https://speedhub-kappa.vercel.app',
   'https://speedhub-back.onrender.com',
 ];
 
