@@ -44,7 +44,7 @@ app.use('/api/', limiter);
 const allowedOrigins = [
   'http://localhost:3000',
   'https://speedhub-neon.vercel.app',
-  'https://speedhub-6fam.onrender.com',
+  'https://speedhub-back.onrender.com',
 ];
 
 const corsOptions = {
@@ -71,7 +71,7 @@ const swaggerOptions = {
       version: '1.0.0',
       description: 'API для SpeedHub',
     },
-    servers: [{ url: 'https://speedhub-6fam.onrender.com' }],
+    servers: [{ url: 'https://speedhub-back.onrender.com' }],
     components: {
       securitySchemes: {
         bearerAuth: {
