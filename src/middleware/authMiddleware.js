@@ -14,7 +14,6 @@ export const protect = async (req, res, next) => {
       return res.status(401).json({ error: 'Користувача не знайдено' });
 
     next();
-    // eslint-disable-next-line no-unused-vars
   } catch (err) {
     res.status(401).json({ error: 'Недійсний токен' });
   }

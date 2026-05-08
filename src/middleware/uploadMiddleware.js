@@ -19,13 +19,10 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
-// Для відгуків (одне фото)
 export const uploadPhoto = upload.single('photo');
 
-// ДЛЯ ПИТАНЬ (масив фото, назва поля 'images' як у твоїй модалці)
 export const uploadQuestionsPhotos = upload.array('images', 5);
 
-// Універсальна функція завантаження
 export const uploadToCloudinary = (fileBuffer, folder = 'speedhub_reviews') => {
   return new Promise((resolve, reject) => {
     cloudinary.uploader
