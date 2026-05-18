@@ -16,6 +16,7 @@ import questionsRoutes from './routes/questions.js';
 import usersRoutes from './routes/users.js';
 import reviewRoutes from './routes/reviews.js';
 import adminRoutes from './routes/admin.js';
+import lecturesRoutes from './routes/lectures.js';
 
 const app = express();
 
@@ -29,9 +30,9 @@ app.use(express.urlencoded({ extended: true }));
 connectMongoDB();
 
 app.use(
-  helmet({
-    contentSecurityPolicy: false,
-  }),
+    helmet({
+      contentSecurityPolicy: false,
+    }),
 );
 
 const limiter = rateLimit({
@@ -90,14 +91,15 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(
-  '/images',
-  express.static(path.join(process.cwd(), 'src/public/images/testsImg')),
+    '/images',
+    express.static(path.join(process.cwd(), 'src/public/images/testsImg')),
 );
 
 app.use('/api/questions', questionsRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/lectures', lecturesRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
