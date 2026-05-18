@@ -56,7 +56,7 @@ router.get('/', async (req, res) => {
  * @openapi
  * /api/lectures/{id}:
  * delete:
- * summary: Видалити лекцію за її ObjectId (Адмін)
+ * summary: Видалити лекцію за її ID (Адмін)
  * tags: [Lectures]
  * security:
  * - bearerAuth: []
