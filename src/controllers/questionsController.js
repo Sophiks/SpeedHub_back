@@ -75,7 +75,7 @@ export const getQuestionsByUnit = async (req, res) => {
 };
 
 /**
- * CREATE QUESTION (🔥 FIXED + DUPLICATE CHECK)
+ * CREATE QUESTION
  */
 export const createQuestion = async (req, res) => {
   try {
