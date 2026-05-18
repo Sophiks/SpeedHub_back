@@ -9,7 +9,11 @@ const router = express.Router();
  * tags:
  * - name: Lectures
  * description: API для управління лекціями ПДР
- * * /api/lectures:
+ */
+
+/**
+ * @openapi
+ * /api/lectures:
  * get:
  * summary: Отримати всі лекції з бази даних
  * tags: [Lectures]
@@ -33,7 +37,24 @@ const router = express.Router();
  * type: string
  * content_html:
  * type: string
- * * /api/lectures/{id}:
+ */
+router.get('/', async (req, res) => {
+    try {
+        const lectures = await mongoose.connection.db
+            .collection('lectures')
+            .find({})
+            .toArray();
+
+        res.status(200).json(lectures);
+    } catch (err) {
+        console.error("Помилка при завантаженні лекцій:", err);
+        res.status(500).json({ error: "Помилка сервера при отриманні лекцій." });
+    }
+});
+
+/**
+ * @openapi
+ * /api/lectures/{id}:
  * delete:
  * summary: Видалити лекцію за її ID (Адмін)
  * tags: [Lectures]
@@ -54,21 +75,6 @@ const router = express.Router();
  * 500:
  * description: Помилка сервера при видаленні
  */
-
-router.get('/', async (req, res) => {
-    try {
-        const lectures = await mongoose.connection.db
-            .collection('lectures')
-            .find({})
-            .toArray();
-
-        res.status(200).json(lectures);
-    } catch (err) {
-        console.error("Помилка при завантаженні лекцій:", err);
-        res.status(500).json({ error: "Помилка сервера при отриманні лекцій." });
-    }
-});
-
 router.delete('/:id', protect, async (req, res) => {
     try {
         const { id } = req.params;
