@@ -15,7 +15,7 @@ const router = express.Router();
  * @openapi
  * /api/lectures:
  * get:
- * summary: Отримати всі лекції з бази даних
+ * summary: Отримати всі лекції
  * tags: [Lectures]
  * responses:
  * 200:
