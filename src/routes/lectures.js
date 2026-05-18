@@ -56,7 +56,7 @@ router.get('/', async (req, res) => {
  * @openapi
  * /api/lectures/{id}:
  * delete:
- * summary: Видалити лекцію за її ObjectId (Потрібні права адміна/авторизація)
+ * summary: Видалити лекцію за її ObjectId
  * tags: [Lectures]
  * security:
  * - bearerAuth: []
@@ -70,6 +70,8 @@ router.get('/', async (req, res) => {
  * responses:
  * 200:
  * description: Лекцію успішно видалено
+ * 404:
+ * description: Лекцію не знайдено
  * 500:
  * description: Помилка сервера при видаленні
  */
