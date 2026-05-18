@@ -4,40 +4,6 @@ import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-/**
- * @openapi
- * tags:
- * - name: Lectures
- * description: API для управління лекціями ПДР
- */
-
-/**
- * @openapi
- * /api/lectures:
- * get:
- * summary: Отримати всі лекції з бази даних
- * tags: [Lectures]
- * responses:
- * 200:
- * description: Список лекцій успішно отримано
- * content:
- * application/json:
- * schema:
- * type: array
- * items:
- * type: object
- * properties:
- * _id:
- * type: string
- * topic_id:
- * type: string
- * topic_prefix:
- * type: string
- * title:
- * type: string
- * content_html:
- * type: string
- */
 router.get('/', async (req, res) => {
     try {
         const lectures = await mongoose.connection.db
@@ -52,29 +18,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-/**
- * @openapi
- * /api/lectures/{id}:
- * delete:
- * summary: Видалити лекцію за її ObjectId
- * tags: [Lectures]
- * security:
- * - bearerAuth: []
- * parameters:
- * - in: path
- * name: id
- * required: true
- * schema:
- * type: string
- * description: ObjectId лекції в базі даних
- * responses:
- * 200:
- * description: Лекцію успішно видалено
- * 404:
- * description: Лекцію не знайдено
- * 500:
- * description: Помилка сервера при видаленні
- */
 router.delete('/:id', protect, async (req, res) => {
     try {
         const { id } = req.params;
