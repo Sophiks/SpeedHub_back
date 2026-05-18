@@ -104,43 +104,4 @@ router.post('/', protect, uploadPhoto, createReview);
  *         description: Review not found
  */
 router.delete('/:id', protect, deleteReview);
-/**
- * @openapi
- * /api/reviews/{id}/approve:
- * put:
- * summary: Затвердити відгук (Перевести isApproved в true)
- * tags: [Reviews]
- * security:
- * - bearerAuth: []
- * parameters:
- * - in: path
- * name: id
- * required: true
- * schema:
- * type: string
- * responses:
- * 200:
- * description: Відгук успішно затверджено
- */
-router.put('/:id/approve', protect, async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const result = await mongoose.connection.db
-        .collection('reviews')
-        .updateOne(
-            { _id: new mongoose.Types.ObjectId(id) },
-            { $set: { isApproved: true } }
-        );
-
-    if (result.matchedCount === 0) {
-      return res.status(404).json({ error: "Відгук не знайдено." });
-    }
-
-    res.status(200).json({ message: "Відгук успішно затверджено." });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Помилка сервера при затвердженні відгуку." });
-  }
-});
 export default router;
